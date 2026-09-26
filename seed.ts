@@ -1,0 +1,3 @@
+import 'dotenv/config'; import bcrypt from 'bcryptjs'; import {PrismaClient,Role,KycStatus} from '@prisma/client';
+const p=new PrismaClient();
+(async()=>{const passwordHash=await bcrypt.hash('ChangeMe123!',12);await p.user.upsert({where:{phone:'255700000000'},update:{},create:{name:'Admin',phone:'255700000000',passwordHash,role:Role.ADMIN,phoneVerified:true}});await p.user.upsert({where:{phone:'255711111111'},update:{},create:{name:'Demo Driver',phone:'255711111111',passwordHash,role:Role.DRIVER,phoneVerified:true,driverProfile:{create:{kycStatus:KycStatus.APPROVED,residenceZip:'11101',vehicleMake:'Toyota',vehicleModel:'Vitz',plateNumber:'T 123 ABC',licenseNumber:'DEMO123'}}}});console.log('Seed complete. Admin: 255700000000 / ChangeMe123!');await p.$disconnect()})();
