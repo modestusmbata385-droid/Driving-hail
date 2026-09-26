@@ -1,0 +1,7 @@
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/ridecash
+JWT_SECRET=change-this
+PORT=4000
+COMMISSION_RATE=0.12
+DRIVER_DEBT_LIMIT_TZS=10000
+OTP_DEV_MODE=true
+OTP_EXPIRY_MINUTES=10
